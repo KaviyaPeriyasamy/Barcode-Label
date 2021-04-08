@@ -1,3 +1,14 @@
+<style>
+	@media screen {
+		.print-format {
+			width: 83mm;
+			padding: 0.25in;
+			min-height: 8in;
+		}
+	}
+</style>
+
+
 {% for n in range(0, (doc.no_of_labels_required)|int, 2) %}
 <section>
 <div class="row">
@@ -9,7 +20,7 @@
       <div class="barcode-text">
         <span class="barcode-strong">{{ frappe.db.get_value('Batch', {'item':doc.name}, 'name') }} ({{frappe.db.get_value('Supplier', {'name': doc.supplier}, 'supplier_abbr')}})</span>
       </div>
-      <div class="barcode-area">{{ doc.item_barcode }}</div>
+      <div class="barcode-area">{{ doc.cf_barcode }}</div>
       <div class="barcode-foot barcode-strong barcode-rotated">
        MRP.{{ frappe.db.get_value('Item Price', {'item_code':doc.name}, 'price_list_rate') }}
       </div>
@@ -25,7 +36,7 @@
       <div class="barcode-text">
         <span class="barcode-strong">{{ frappe.db.get_value('Batch', {'item':doc.name}, 'name')}} ({{frappe.db.get_value('Supplier', {'name': doc.supplier}, 'supplier_abbr')}})</span>
       </div>
-      <div class="barcode-area">{{ doc.item_barcode }}</div>
+      <div class="barcode-area">{{ doc.cf_barcode }}</div>
       <div class="barcode-foot barcode-strong barcode-rotated">
        MRP.{{ frappe.db.get_value('Item Price', {'item_code':doc.name}, 'price_list_rate') }}
       </div>
@@ -34,4 +45,5 @@
 </div>
 </div>
 </section>
+<div>&nbsp;</div>
 {% endfor %}
