@@ -1,0 +1,39 @@
+
+
+
+{% for n in range(0, (doc.no_of_labels_required)|int, 2) %}
+<section>
+<div class="row">
+    <div class="column">
+<div class="dashboard-section">
+  <div class="barcode-label-container">
+    <div id="barcode-label" class="barcode-label">
+      <div class="barcode-header">{{ doc.item_code }}</div>
+          <div class="barcode-text">
+        <span class="barcode-strong">{{doc.item_name}}</span>
+      </div>
+      <div class="barcode-area barcode-strong">
+       MRP.{{ frappe.db.get_value('Item Price', {'item_code':doc.name}, 'price_list_rate') }}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+ <div class="column">
+<div class="dashboard-section">
+  <div class="barcode-label-container">
+    <div id="barcode-label" class="barcode-label">
+      <div class="barcode-header">{{ doc.item_code }}</div>
+         <div class="barcode-text">
+        <span class="barcode-strong">{{doc.item_name}}</span>
+      </div>
+      <div class="barcode-area barcode-strong">
+       MRP.{{ frappe.db.get_value('Item Price', {'item_code':doc.name}, 'price_list_rate') }}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+<div>&nbsp;</div>
+{% endfor %}
